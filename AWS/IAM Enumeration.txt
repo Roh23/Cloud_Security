@@ -1,8 +1,13 @@
 # AWS CLI: Authenticate using Access Key and Secret Key
 aws configure
+rm -f ~/.aws/credentials
 
 # Verify caller identity (like `whoami` for AWS)
 aws sts get-caller-identity
+
+# Assume role
+aws sts assume-role --role-arn <RoleArn> --role-session-name <SessionName>
+aws configure set aws_session_token <token>
 
 # Get details about the current IAM user
 aws iam get-user
