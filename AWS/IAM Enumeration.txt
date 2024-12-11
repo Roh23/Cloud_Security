@@ -1,0 +1,62 @@
+# AWS CLI: Authenticate using Access Key and Secret Key
+aws configure
+
+# Verify caller identity (like `whoami` for AWS)
+aws sts get-caller-identity
+
+# Get details about the current IAM user
+aws iam get-user
+
+# List groups associated with the current IAM user
+aws iam list-groups-for-user --user-name user01
+
+# List attached user policies
+aws iam list-attached-user-policies --user-name user01
+
+# List inline policies associated with the IAM user
+aws iam list-user-policies --user-name user01
+
+# Get details of an inline policy
+aws iam get-user-policy --user-name user01 --policy-name CustomS3Access
+
+# List versions of an AWS-managed policy
+aws iam list-policy-versions --policy-arn arn:aws:iam::aws:policy/SecurityAuditReadOnlyAccess
+
+# Get details of the latest version of the AWS-managed policy
+aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/SecurityAuditReadOnlyAccess --version-id v3
+
+# List versions of a customer-managed policy
+aws iam list-policy-versions --policy-arn arn:aws:iam::123456789012:policy/user01Policy
+
+# Get details of the latest version of the customer-managed policy
+aws iam get-policy-version --policy-arn arn:aws:iam::123456789012:policy/user01Policy --version-id v6
+
+# List policies attached to a specific IAM role
+aws iam list-attached-role-policies --role-name BackendSupport
+
+# Get details of the IAM role
+aws iam get-role --role-name BackendSupport
+
+# Get details of a customer-managed role policy
+aws iam get-policy --policy-arn arn:aws:iam::123456789012:policy/BackendSupportPolicy
+
+# Get details of the latest version of the role policy
+aws iam get-policy-version --policy-arn arn:aws:iam::123456789012:policy/BackendSupportPolicy --version-id v2
+
+# List all S3 buckets in the account
+aws s3 ls
+
+# List objects in a specific S3 bucket
+aws s3 ls s3://project-artifacts
+
+# Download a specific object from the S3 bucket
+aws s3 cp s3://project-artifacts/flag.txt .
+
+# List secrets in AWS Secrets Manager
+aws secretsmanager list-secrets
+
+# Get details of a specific secret
+aws secretsmanager describe-secret --secret-id prod/DatabaseAccess
+
+# Retrieve the value of a secret from AWS Secrets Manager
+aws secretsmanager get-secret-value --secret-id prod/DatabaseAccess
