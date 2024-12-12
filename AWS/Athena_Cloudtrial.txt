@@ -1,0 +1,10 @@
+Amazon Athena follows a pay-per-query pricing model, which means users are charged based on the amount of data scanned during a query. The cost is $5 per terabyte of data scanned. To help reduce costs, users can compress, partition, or convert their data into columnar formats to reduce the amount of data scanned per query. An important factor to note is that if the same data is queried frequently, converting it into a columnar format like Parquet or ORC can significantly decrease costs.
+
+*All login's in a particular day* 
+
+SELECT * 
+FROM cloudtrail_logs_aws_cloudtrail_logsfile
+WHERE eventname = 'ConsoleLogin'
+AND eventTime LIKE '%2024-08-30%'
+AND responseelements LIKE '%Success%'
+
