@@ -1,6 +1,9 @@
+# Remove existing keys 
+rm -f ~/.aws/credentials
+
 # AWS CLI: Authenticate using Access Key and Secret Key
 aws configure
-rm -f ~/.aws/credentials
+
 
 # Verify caller identity (like `whoami` for AWS)
 aws sts get-caller-identity
