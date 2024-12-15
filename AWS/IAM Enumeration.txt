@@ -30,6 +30,9 @@ aws iam get-user-policy --user-name user01 --policy-name CustomS3Access
 # List versions of an AWS-managed policy - Amazon and customer managed policies can have multiple versions, allowing you to preserve, review, and roll back to previous policy versions. Inline policies do not support versioning.
 aws iam list-policy-versions --policy-arn arn:aws:iam::aws:policy/SecurityAuditReadOnlyAccess
 
+#Get details of a policy
+aws iam get-policy --policy-arn arn:aws:iam::aws:policy/SecurityAuditReadOnlyAccess
+
 # Get details of the latest version of the AWS-managed policy
 aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/SecurityAuditReadOnlyAccess --version-id v3
 
@@ -51,6 +54,9 @@ aws iam get-policy --policy-arn arn:aws:iam::123456789012:policy/BackendSupportP
 # Get details of the latest version of the role policy
 aws iam get-policy-version --policy-arn arn:aws:iam::123456789012:policy/BackendSupportPolicy --version-id v2
 
+# assume role including external ID
+aws sts assume-role --role-arn arn:aws:iam::123457890:role/ExternalAccess --role-session-name ExternalAccess --external-id 37000-35000-7777
+
 # List all S3 buckets in the account
 aws s3 ls
 
@@ -68,3 +74,7 @@ aws secretsmanager describe-secret --secret-id prod/DatabaseAccess
 
 # Retrieve the value of a secret from AWS Secrets Manager
 aws secretsmanager get-secret-value --secret-id prod/DatabaseAccess
+
+# Retrieve
+TOKEN=$(curl -X PUT localhost:1338/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+curl localhost:1338/latest/meta-data/container/security-credentials -H "X-aws-ec2-metadata-token: $TOKEN"
