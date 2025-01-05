@@ -1,0 +1,4 @@
+**CloudTrail Console and Event History**
+
+The Event History in the AWS Management Console (which retains events for the past 90 days) is unaffected by trail deletion. Events are stored independently of your trail configuration in a different system for the 90-day period. As an adversary one of the first steps taken would be to delete the trial, but fortunately AWS retains the trail for 90 days. 
+
